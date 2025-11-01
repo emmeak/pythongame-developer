@@ -1,0 +1,6 @@
+food_types  = {"fruit":"apple", "vegetable":"lettuce", "meat":"pork", "fast food":"fries", "dairy":"cheese", "nut":"hazelnut", "dessert":"cupcake", "grain":"rice", "seafood":"salmon", "beverage":"coffee", "spice":"cinnamon", "herb":"basil", "legume":"lentil", "sweetener":"honey", "condiment":"ketchup", "snack":"popcorn", "breakfast food":"pancakes", "soup":"chicken noodle", "salad":"caesar", "bread":"baguette", "pasta":"spaghetti", "cereal":"oatmeal", "frozen food":"ice cream", "pickled food":"kimchi", "fermented food":"yogurt", "dried fruit":"raisins", "seaweed":"nori", "mushroom":"shiitake", "tuber":"potato", "root vegetable":"carrot", "crustacean":"shrimp", "mollusk":"oyster", "game meat":"venison", "offal":"liver", "processed meat":"sausage", "plant-based meat alternative":"tofu", "energy drink":"red bull", "tea":"green tea", "juice":"orange juice"}
+for i, j in food_types.items():
+    print(i, j)
+print((len(food_types)))
+print(food_types["pasta"])
+print(food_types.get("home food","not found"))

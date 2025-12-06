@@ -17,9 +17,14 @@ def draw():
 def on_mouse_down(pos):
     global message
     if littlealien.collidepoint(pos):
-        littlealien.x = random.randint(50,550)
-        littlealien.y = random.randint(40,440)
+        sounds.eep.play()
         message = "Winners get 2125!"
     else:
         message = "Losers get 4963..."
+
+def update():
+    littlealien.x += 9
+    if littlealien.x > 605:
+        littlealien.x = 0
+        littlealien.y = random.randint(60, 470)
 pgzrun.go()

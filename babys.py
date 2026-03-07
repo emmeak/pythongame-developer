@@ -2,16 +2,27 @@ import pgzrun
 import random
 from time import time
 
-WIDTH = 1000
-HEIGHT = 700
+WIDTH = 800
+HEIGHT = 600
 
 satellite = []
 for i in range(12):
     bbs = Actor("babysatellite")
-    bbs.pos = random.randint(171, 969), random.randint(252, 696)
+    bbs.pos = random.randint(50, 750), random.randint(50, 550)
     satellite.append(bbs)
 
 starttime = 0
 totaltime = 0
 
-print(time())
+def draw():
+    screen.blit("thebigspace", (0,0))
+    bbsn = 1
+    for i in satellite:
+        i.draw()
+        screen.draw.text(str(bbsn), (i.pos[0], i.pos[1] + 20))
+        bbsn +=1
+
+def update():
+    pass
+
+pgzrun.go()

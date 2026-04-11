@@ -15,6 +15,8 @@ starttime = 0
 totaltime = 0
 next_sat = 0
 total_sat = 12
+starttime = time()
+print(starttime)
 
 def draw():
     screen.blit("thebigspace", (0,0))
@@ -25,6 +27,11 @@ def draw():
         bbsn +=1
     for i in satlines:
         screen.draw.line(i[0], i[1], "white")
+    if next_sat < total_sat:
+        totaltime = time() - starttime
+        screen.draw.text(str(round(totaltime, 1)), (50, 500), fontsize = 25)
+    else:
+        screen.draw.text(str(round(totaltime, 1)), (50, 500), fontsize = 25)
 
 def update():
     pass

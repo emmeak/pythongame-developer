@@ -15,6 +15,9 @@ abox_r2 = Rect(340, 340, 300, 100)
 
 current_q = 0
 total_q = 0
+timerrrr = 10
+
+questiions = []
 
 def draw():
     screen.clear()
@@ -28,9 +31,36 @@ def draw():
     screen.draw.filled_rect(abox_r1, "ivory")
     screen.draw.filled_rect(abox_r2, "old lace")
     scrollmess = f"Welcome to quizz... Q:{current_q}/{total_q}"
-    screen.draw.textbox(scrollmess, scroller_box, color = "white")
+    screen.draw.textbox(scrollmess, scroller_box, color = "snow")
+    screen.draw.textbox(q[0], q_box, color = "snow")
+    screen.draw.textbox(q[1].strip(), abox_l1, color = "pink")
+    screen.draw.textbox(q[2].strip(), abox_l2, color = "pink")
+    screen.draw.textbox(q[3].strip(), abox_r1, color = "pink")
+    screen.draw.textbox(q[4].strip(), abox_r2, color = "pink")
+    screen.draw.textbox(str(timerrrr), time_box, color = "white")
+    screen.draw.textbox("skip", skip_bu, color = "white")
 
 def update():
     scroller_box.x -= 2
+    if scroller_box.right < 0:
+        scroller_box.x = 860
+
+def questread():
+    global questiions, total_q
+    with open("questions.txt", "r") as file:
+        for i in file:
+            questiions.append(i)
+            total_q += 1
+
+def displaynextquest():
+    global current_q
+    current_q += 1
+    return questiions.pop(0).split("|")
+
+questread()
+displaynextquest()
+
+q = displaynextquest()
+print(q)
 
 pgzrun.go()

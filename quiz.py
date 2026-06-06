@@ -16,8 +16,11 @@ abox_r2 = Rect(340, 340, 300, 100)
 current_q = 0
 total_q = 0
 timerrrr = 10
+gameovere = False
+score = 0
 
 questiions = []
+all = [abox_l1, abox_l2, abox_r1, abox_r2]
 
 def draw():
     screen.clear()
@@ -57,8 +60,34 @@ def displaynextquest():
     current_q += 1
     return questiions.pop(0).split("|")
 
+def on_mouse_down(pos):
+    index = 1
+    for i in all:
+        if i.collidepoint(pos):
+            if i is int(q[5]):
+                anstick()
+            else:
+                gmaend()
+        index += 1
+
+def anstick():
+    global q, questiions, score, timerrrr
+    score += 1
+    if questiions:
+         q = displaynextquest()
+         timerrrr = 10
+    else:
+        gmaend()
+
+def gmaend():
+    global timerrrr, gameovere, q
+    message = f"G-G-G-G-G-G-Game oooooovvvvver!\nYou got {score} questions correct!"
+    q = [message, "-", "-", "-", "-", 5]
+    timerrrr = 0
+    gameovere = True
+
+
 questread()
-displaynextquest()
 
 q = displaynextquest()
 print(q)

@@ -64,11 +64,21 @@ def on_mouse_down(pos):
     index = 1
     for i in all:
         if i.collidepoint(pos):
-            if i is int(q[5]):
+            if index is int(q[5]):
                 anstick()
             else:
                 gmaend()
         index += 1
+    if skip_bu.collidepoint(pos):
+        questskipped()
+
+def questskipped():
+    global q, questiions, timerrrr
+    if questiions and not gameovere:
+        q = displaynextquest()
+        timerrrr = 10
+    else:
+        gmaend()
 
 def anstick():
     global q, questiions, score, timerrrr
@@ -81,15 +91,27 @@ def anstick():
 
 def gmaend():
     global timerrrr, gameovere, q
-    message = f"G-G-G-G-G-G-Game oooooovvvvver!\nYou got {score} questions correct!"
-    q = [message, "-", "-", "-", "-", 5]
+    message = f"G-G-G-G-G-G-Game Oooooovvvvver!\nYou got {score} questions correct!"
+    messageon = f"Woo-to-the-Hoo. Great Job, You've won!\nYou got all the questions correct!"
+    if score < 11:
+        q = [message, "-", "-", "-", "-", 5]
+    else:
+         q = [messageon, "-", "-", "-", "-", 5]
     timerrrr = 0
     gameovere = True
 
+def updatime():
+    global timerrrr
+    if timerrrr:
+        timerrrr -= 1
+    else:
+        gmaend()
 
 questread()
 
 q = displaynextquest()
 print(q)
+
+clock.schedule_interval(updatime,1)
 
 pgzrun.go()
